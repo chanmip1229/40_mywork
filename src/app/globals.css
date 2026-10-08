@@ -1,0 +1,449 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family:
+      "Pretendard Variable",
+      Pretendard,
+      -apple-system,
+      BlinkMacSystemFont,
+      system-ui,
+      Roboto,
+      "Helvetica Neue",
+      "Segoe UI",
+      "Apple SD Gothic Neo",
+      "Noto Sans KR",
+      "Malgun Gothic",
+      sans-serif;
+  }
+}
+
+/* Home Tool Card Container Query (Modern Web Guidance: size-aware-styling) */
+.tool-card-container {
+  container-type: inline-size;
+}
+
+/* Native Dialog Backdrop Styling (37_경비정산검사기) */
+.reject-dialog::backdrop {
+  background-color: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+/* Responsive Table Pattern (37_경비정산검사기) */
+.expense-table-wrapper {
+  overflow: auto;
+  max-inline-size: 100%;
+  max-block-size: min(720px, 80vh);
+  container-type: inline-size;
+}
+
+.expense-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  --label-2: "부서";
+  --label-3: "사용일시";
+  --label-4: "항목";
+  --label-5: "가맹점";
+  --label-6: "금액";
+  --label-7: "인원";
+  --label-8: "증빙";
+  --label-9: "품의번호";
+  --label-10: "제출일";
+  --label-11: "메모";
+  --label-12: "규정 검증";
+}
+
+/* Sticky column headers (desktop) */
+.expense-table thead {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 2;
+}
+
+/* Sticky row headers (desktop) */
+.expense-table tbody th {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 1;
+  background-color: #ffffff;
+}
+
+.expense-table tbody tr:hover th {
+  background-color: #f8fafc;
+}
+
+.expense-table tbody tr.is-violation th {
+  background-color: #fff1f2;
+}
+
+.expense-table tbody tr.is-violation:hover th {
+  background-color: #ffe4e6;
+}
+
+/* Responsive Stacked Layout for narrow containers */
+@container (width < 640px) {
+  .expense-table,
+  .expense-table thead,
+  .expense-table tbody,
+  .expense-table tr,
+  .expense-table th,
+  .expense-table td {
+    display: block;
+  }
+
+  .expense-table thead {
+    display: none;
+  }
+
+  .expense-table tbody {
+    padding: 0.75rem;
+  }
+
+  .expense-table tbody tr {
+    margin-block-end: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  .expense-table tbody tr.is-violation {
+    border-color: #fda4af;
+    background: #fff1f2;
+  }
+
+  .expense-table tbody th {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 2;
+    background: #f1f5f9;
+    border-block-end: 1px solid #e2e8f0;
+  }
+
+  .expense-table tbody tr.is-violation th {
+    background: #ffe4e6;
+    border-block-end: 1px solid #fda4af;
+  }
+
+  .expense-table tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.5rem 1rem;
+    text-align: right;
+    border-block-end: 1px solid #f1f5f9;
+  }
+
+  .expense-table tbody td:last-child {
+    border-block-end: none;
+  }
+
+  .expense-table tbody td::before {
+    font-weight: 600;
+    color: #64748b;
+    font-size: 0.75rem;
+    margin-inline-end: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .expense-table tbody td:nth-child(2)::before {
+    content: var(--label-2) ": " / var(--label-2);
+  }
+  .expense-table tbody td:nth-child(3)::before {
+    content: var(--label-3) ": " / var(--label-3);
+  }
+  .expense-table tbody td:nth-child(4)::before {
+    content: var(--label-4) ": " / var(--label-4);
+  }
+  .expense-table tbody td:nth-child(5)::before {
+    content: var(--label-5) ": " / var(--label-5);
+  }
+  .expense-table tbody td:nth-child(6)::before {
+    content: var(--label-6) ": " / var(--label-6);
+  }
+  .expense-table tbody td:nth-child(7)::before {
+    content: var(--label-7) ": " / var(--label-7);
+  }
+  .expense-table tbody td:nth-child(8)::before {
+    content: var(--label-8) ": " / var(--label-8);
+  }
+  .expense-table tbody td:nth-child(9)::before {
+    content: var(--label-9) ": " / var(--label-9);
+  }
+  .expense-table tbody td:nth-child(10)::before {
+    content: var(--label-10) ": " / var(--label-10);
+  }
+  .expense-table tbody td:nth-child(11)::before {
+    content: var(--label-11) ": " / var(--label-11);
+  }
+  .expense-table tbody td:nth-child(12)::before {
+    content: var(--label-12) ": " / var(--label-12);
+  }
+}
+
+/* 39_리뷰분석기 원본 스타일 (/reviews 전용 스코프) */
+:root {
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --border: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --positive-bg: #dcfce7;
+  --positive-text: #166534;
+  --negative-bg: #fee2e2;
+  --negative-text: #991b1b;
+  --neutral-bg: #f1f5f9;
+  --neutral-text: #334155;
+  --ad-bg: #fef3c7;
+  --ad-text: #92400e;
+  --safety-bg: #fff1f2;
+  --safety-border: #fecdd3;
+  --safety-text: #be123c;
+}
+
+.reviews-scope {
+  background-color: var(--bg);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Pretendard", "Malgun Gothic", sans-serif;
+  line-height: 1.5;
+  padding: 2rem 1.25rem 4rem;
+  min-height: calc(100vh - 57px);
+}
+
+.reviews-scope .container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.reviews-scope .header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 1rem;
+}
+
+.reviews-scope .header h1 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.reviews-scope .subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+.reviews-scope .badge-model {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+  padding: 0.4rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.reviews-scope .card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.reviews-scope .card h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.reviews-scope .upload-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.reviews-scope .file-input {
+  padding: 0.55rem 0.75rem;
+  border: 1px dashed #94a3b8;
+  border-radius: 8px;
+  background: #f8fafc;
+  font-size: 0.9rem;
+  cursor: pointer;
+  flex: 1;
+  min-width: 240px;
+}
+
+.reviews-scope .btn-primary {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.reviews-scope .btn-primary:hover:not(:disabled) {
+  background: var(--primary-hover);
+}
+
+.reviews-scope .btn-primary:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+.reviews-scope .grid-two {
+  display: grid;
+  grid-template-columns: 1.75fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .reviews-scope .grid-two {
+    grid-template-columns: 1fr;
+  }
+}
+
+.reviews-scope .table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.reviews-scope table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.reviews-scope th,
+.reviews-scope td {
+  border-bottom: 1px solid var(--border);
+  padding: 0.65rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.reviews-scope th {
+  background: #f8fafc;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.reviews-scope tr:last-child td {
+  border-bottom: none;
+}
+
+.reviews-scope .tag {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.reviews-scope .tag-긍정 {
+  background: var(--positive-bg);
+  color: var(--positive-text);
+}
+
+.reviews-scope .tag-부정 {
+  background: var(--negative-bg);
+  color: var(--negative-text);
+}
+
+.reviews-scope .tag-중립 {
+  background: var(--neutral-bg);
+  color: var(--neutral-text);
+}
+
+.reviews-scope .tag-광고 {
+  background: var(--ad-bg);
+  color: var(--ad-text);
+}
+
+.reviews-scope .tag-safety {
+  background: var(--safety-bg);
+  color: var(--safety-text);
+  border: 1px solid var(--safety-border);
+}
+
+.reviews-scope .error-box {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.reviews-scope .safety-alert-card {
+  background: var(--safety-bg);
+  border: 1px solid var(--safety-border);
+}
+
+.reviews-scope .conclusion-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.reviews-scope .conclusion-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.reviews-scope .conclusion-row span {
+  font-weight: 700;
+  color: var(--primary);
+  min-width: 24px;
+}
+
+.reviews-scope .conclusion-input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.92rem;
+}
+
+.reviews-scope .conclusion-input:focus {
+  outline: 2px solid var(--primary);
+  border-color: transparent;
+}
+
+.reviews-scope .muted-note {
+  color: var(--text-muted);
+  font-size: 0.84rem;
+}
+
+.reviews-scope .section-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
